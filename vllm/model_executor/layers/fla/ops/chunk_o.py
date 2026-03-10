@@ -34,7 +34,7 @@ NUM_WARPS = [2, 4] if is_nvidia_hopper else [2, 4, 8]
         for BK in BKV_LIST
         for BV in BKV_LIST
         for num_warps in NUM_WARPS
-        for num_stages in [2, 3, 4]
+        for num_stages in [2, 3]
     ],
     key=["H", "K", "V", "BT"],
 )

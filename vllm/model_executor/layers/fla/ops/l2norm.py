@@ -20,7 +20,7 @@ USE_DEFAULT_FLA_NORM = int(os.getenv("USE_DEFAULT_FLA_NORM", "0"))
 
 @triton.autotune(
     configs=[
-        triton.Config({}, num_warps=num_warps) for num_warps in [1, 2, 4, 8, 16, 32]
+        triton.Config({}, num_warps=num_warps) for num_warps in [1, 2, 4, 8]
     ],
     key=["D"],
 )
@@ -50,7 +50,7 @@ def l2norm_fwd_kernel1(
 @triton.autotune(
     configs=[
         triton.Config({"BT": BT}, num_warps=num_warps)
-        for num_warps in [1, 2, 4, 8, 16]
+        for num_warps in [1, 2, 4, 8]
         for BT in BT_LIST
     ],
     key=["D"],

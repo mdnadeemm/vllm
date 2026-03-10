@@ -21,7 +21,7 @@ BS_LIST = [32, 64] if check_shared_mem() else [16, 32]
 
 @triton.heuristics({"IS_VARLEN": lambda args: args["cu_seqlens"] is not None})
 @triton.autotune(
-    configs=[triton.Config({}, num_warps=num_warps) for num_warps in [1, 2, 4, 8]],
+    configs=[triton.Config({}, num_warps=num_warps) for num_warps in [2, 4, 8]],
     key=["B", "H", "BT", "IS_VARLEN", "REVERSE"],
 )
 @triton.jit(do_not_specialize=["T"])

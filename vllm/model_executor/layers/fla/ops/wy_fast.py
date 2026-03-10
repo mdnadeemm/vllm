@@ -20,8 +20,8 @@ from .index import prepare_chunk_indices
 @triton.autotune(
     configs=[
         triton.Config({}, num_warps=num_warps, num_stages=num_stages)
-        for num_warps in [2, 4, 8]
-        for num_stages in [2, 3, 4]
+        for num_warps in [2, 4]
+        for num_stages in [2, 3]
     ],
     key=["H", "K", "V", "BT", "BK", "BV", "IS_VARLEN"],
 )
